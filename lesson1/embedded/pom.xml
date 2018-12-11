@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>lt.baltictalents</groupId>
@@ -14,7 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <glassfish.version>4.1.1</glassfish.version>
     </properties>
-    
+
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -73,50 +74,50 @@
                 </executions>
             </plugin>
             <plugin>
-    <groupId>org.glassfish.embedded</groupId>
-    <artifactId>maven-embedded-glassfish-plugin</artifactId>
-    <version>${glassfish.version}</version>
-    <configuration>
-        <autoDelete>true</autoDelete>
-        <ports>
-            <http-listener>8080</http-listener>
-            <https-listener>8181</https-listener>
-        </ports>
-    </configuration>
-    <executions>
+                <groupId>org.glassfish.embedded</groupId>
+                <artifactId>maven-embedded-glassfish-plugin</artifactId>
+                <version>${glassfish.version}</version>
+                <configuration>
+                    <autoDelete>true</autoDelete>
+                    <ports>
+                        <http-listener>8080</http-listener>
+                        <https-listener>8181</https-listener>
+                    </ports>
+                </configuration>
+                <executions>
                     <execution>
                         <phase>install</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
                     </execution>
-        <execution>
-            <id>deploy</id>
-            <goals>
-                <goal>deploy</goal>
-            </goals>
-            <phase>none</phase>
-            <configuration>
-                <app>target/${project.build.finalName}.war</app>
-                <contextRoot>/${project.build.finalName}</contextRoot>
-            </configuration>
-        </execution>
-        <execution>
-            <id>admin</id>
-            <goals>
-                <goal>admin</goal>
-            </goals>
-            <phase>none</phase>
-        </execution>
-    </executions>
-    <dependencies>
-        <dependency>
-            <groupId>org.glassfish.main.extras</groupId>
-            <artifactId>glassfish-embedded-all</artifactId>
-            <version>${glassfish.version}</version>
-        </dependency>
-    </dependencies>
-</plugin>
+                    <execution>
+                        <id>deploy</id>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                        <phase>none</phase>
+                        <configuration>
+                            <app>target/${project.build.finalName}.war</app>
+                            <contextRoot>/${project.build.finalName}</contextRoot>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>admin</id>
+                        <goals>
+                            <goal>admin</goal>
+                        </goals>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.glassfish.main.extras</groupId>
+                        <artifactId>glassfish-embedded-all</artifactId>
+                        <version>${glassfish.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
 

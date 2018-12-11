@@ -13,7 +13,7 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <glassfish.version>4.1.1</glassfish.version>
+        <glassfish.version>5.0</glassfish.version>
     </properties>
 
     <dependencies>

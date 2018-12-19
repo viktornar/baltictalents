@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="accountDao"
+          class="lt.baltictalents.lesson4.beans.example.dao.AccountDao">
+        <!-- additional collaborators and configuration for this bean go here -->
+    </bean>
+
+    <bean id="userDao" class="lt.baltictalents.lesson4.beans.example.dao.UserDao">
+        <constructor-arg type="java.lang.String" name="name" value="Viktor"/>
+        <constructor-arg type="java.lang.String" name="surname" value="Nareiko"/>
+        <constructor-arg type="int" name="age" value="32"/>
+    </bean>
+
+    <bean id="allDao" class="lt.baltictalents.lesson4.beans.example.dao.AllDao">
+        <!-- setter injection using the nested ref element -->
+        <property name="accountDao">
+            <ref bean="accountDao"/>
+        </property>
+
+        <!-- setter injection using the neater ref attribute -->
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean id="allDaoConstructor" class="lt.baltictalents.lesson4.beans.example.dao.AllDaoConstructor" scope="singleton">
+        <constructor-arg name="accountDao" ref="accountDao"/>
+        <constructor-arg name="userDao" ref="userDao"/>
+    </bean>
+
+    <!--<bean id="xmlConfig" class="org.springframework.web.servlet.view.JstlView">-->
+        <!--<property name="url" value="/WEB-INF/view/xmlSample.jsp" />-->
+    <!--</bean>-->
+</beans>

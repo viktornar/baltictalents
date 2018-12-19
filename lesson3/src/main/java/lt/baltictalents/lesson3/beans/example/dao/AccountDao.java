@@ -14,7 +14,7 @@ public class AccountDao {
 
     @Getter
     @Setter
-    public Boolean account;
+    public String account;
 
     @Override
     public String toString() {

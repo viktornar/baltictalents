@@ -8,6 +8,7 @@
         <param-name>jdbcDriver</param-name>
         <param-value>com.mysql.jdbc.Driver</param-value>
     </context-param>
+
     <context-param>
         <param-name>databaseUrl</param-name>
         <param-value>jdbc:mysql://localhost:3306/mydb</param-value>

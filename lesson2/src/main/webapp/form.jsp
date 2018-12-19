@@ -5,5 +5,8 @@
 </head>
 <body>
     <h1>Hello from FormServlet</h1>
+    <%
+        out.println("Your IP address is " + request.getRemoteAddr());
+    %>
 </body>
 </html>

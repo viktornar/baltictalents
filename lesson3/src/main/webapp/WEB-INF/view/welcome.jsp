@@ -2,6 +2,7 @@
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.GregorianCalendar" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <html>
 <head>
@@ -23,6 +24,7 @@
 
         return myAge;
     }
+
 %>
 
 <h1>Hi all :)</h1>

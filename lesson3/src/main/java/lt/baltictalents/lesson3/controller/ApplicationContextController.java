@@ -79,4 +79,17 @@ public class ApplicationContextController {
 
         return message;
     }
+
+    @GetMapping(value = "/mobile-payment")
+    @ResponseBody
+    public String getMobile() {
+        return "";
+    }
+
+
+    @GetMapping(value = "/online-bank-payment")
+    @ResponseBody
+    public String getOnlineBank() {
+        return "";
+    }
 }

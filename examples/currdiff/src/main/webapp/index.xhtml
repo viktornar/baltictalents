@@ -1,0 +1,82 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="/templates/default/main.xhtml">
+    <ui:define name="content">
+        <h1 class="page-header ">
+            <i class="fa fa-money"></i>Get the changes of currency rates for the selected date
+        </h1>
+
+        <p:dialog modal="true" widgetVar="statusDialog" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage name="img/ajaxloadingbar.gif" />
+        </p:dialog>
+
+        <p:messages id="errorMsgs" autoUpdate="false" closable="true" globalOnly="true"  />
+
+        <h:form id="form">
+            <p:messages id="validationMsgs" for="date" autoUpdate="false" closable="true" />
+
+            <h:panelGrid id="dateGrid" columns="2">
+                <p:outputLabel for="date" value="Selected date:"  />
+                <p:calendar widgetVar="calendar"
+                            id="date"
+                            value="#{indexController.date}"
+                            required="true"
+                            pattern="yyyy-MM-dd"
+                            maxdate="#{indexController.maxDate}"
+                            style="padding-left: 5px">
+
+                    <p:ajax event="dateSelect" listener="#{indexController.onDateSelect}" />
+                    <p:ajax event="click" update="dateGrid" resetValues="true"/>
+                </p:calendar>
+            </h:panelGrid>
+
+            <p:separator />
+
+            <h:panelGrid id="buttonGrid" columns="2" cellpadding="5" style="width: 230px">
+                <p:commandButton value="Get changes"
+                                 actionListener="#{indexController.populateTable}"
+                                 icon="ui-icon-check"
+                                 update="form"
+                                 ajax="false"
+                                 onclick="PF('statusDialog').show()"/>
+                <p:commandButton
+                        value="Clean"
+                        actionListener="#{indexController.resetValues}"
+                        rendered="#{indexController.dataExist}"
+                        resetValues="true"
+                        oncomplete="PF('calendar').setDate(null)"
+                        update="form"/>
+            </h:panelGrid>
+
+            <p:separator rendered="#{indexController.dataExist}" />
+
+            <p:dataTable var="rate" value="#{indexController.items}" id="dataTable" rendered="#{indexController.dataExist}">
+                <p:column headerText="Currency" sortBy="#{rate.currency}">
+                    <h:outputText value="#{rate.currency}" />
+                </p:column>
+
+                <p:column headerText="Quantity" sortBy="#{rate.quantity}">
+                    <h:outputText value="#{rate.quantity}" />
+                </p:column>
+
+                <p:column headerText="Rate" sortBy="#{rate.rate}">
+                    <h:outputText value="#{rate.rate}" />
+                </p:column>
+
+                <p:column headerText="Rate change, %" sortBy="#{rate.rateChangeInPercentage}">
+                    <h:outputText value="#{rate.rateChangeInPercentage}" />
+                    <p:graphicImage name="img/up.gif"
+                                    style="padding-left: 5px;
+                                    padding-bottom: 2px;"
+                                    rendered="#{rate.rateChangeInPercentage gt 0}"/>
+                    <p:graphicImage name="img/down.gif"
+                                    style="padding-left: 5px;
+                                    padding-bottom: 2px;"
+                                    rendered="#{rate.rateChangeInPercentage lt 0}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>        
+

@@ -1,0 +1,8 @@
+*.class
+# build files
+target/
+.idea/
+*.iml
+tomcat*/
+# virtual machine crash logs
+hs_err_pid*

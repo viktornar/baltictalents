@@ -58,7 +58,6 @@ public class ExampleController {
 
     @RequestMapping(path = "/response-payload", produces = "application/json")
     ResponseEntity<SomeJson> doGetResponseEntity(HttpServletRequest request) {
-        val modelAndView = new ModelAndView("examples");
 
         logger.info("Request method: " + request.getMethod());
 

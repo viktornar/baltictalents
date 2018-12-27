@@ -11,7 +11,7 @@
 <h1>Hi all :)</h1>
 
 <p>
-    I'am Viktor number <c:out value="${id}"/>
+    I'am Viktor number ${id}
 </p>
 
 </body>

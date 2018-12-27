@@ -1,7 +1,7 @@
-package lt.baltictalents.lesson4.controller;
+package lt.baltictalents.lesson5.controller.rest;
 
-import lt.baltictalents.lesson4.payload.UploadFileResponse;
-import lt.baltictalents.lesson4.service.FileStorageService;
+import lt.baltictalents.lesson5.payload.UploadFileResponse;
+import lt.baltictalents.lesson5.service.FileStorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +37,7 @@ public class FileRestController {
                 .path(fileName)
                 .toUriString();
 
-        return new UploadFileResponse(fileName, fileDownloadUri,
-                file.getContentType(), file.getSize());
+        return new UploadFileResponse(fileName, fileDownloadUri, file.getContentType(), file.getSize());
     }
 
     @PostMapping("/uploadMultipleFiles")

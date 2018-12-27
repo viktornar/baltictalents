@@ -13,7 +13,7 @@
 <table>
     <tr>
         <td>Name :</td>
-        <td><c:out value="${name}"/></td>
+        <td>${name}</td>
     </tr>
     <tr>
         <td>ID :</td>

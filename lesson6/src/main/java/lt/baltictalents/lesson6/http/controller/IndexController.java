@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
     @GetMapping("/")
     String getPage() {
-        System.out.println("Hello world :)");
+        System.out.println("Hello world!!!");
         return "welcome";
     }
 }

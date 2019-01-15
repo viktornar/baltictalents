@@ -3,3 +3,11 @@ https://stackoverflow.com/tags/servlets/info
 http://www.ntu.edu.sg/home/ehchua/programming/java/javaservlets.html
 https://www.tutorialspoint.com/spring/
 https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html
+
+https://www.baeldung.com/spring-security-create-new-custom-security-expression
+https://www.baeldung.com/spring-security-expressions-basic
+https://github.com/eugenp/tutorials/tree/master/spring-boot/src/main/java/com/baeldung/internationalization
+https://www.baeldung.com/spring-boot-internationalization
+https://www.baeldung.com/spring-security-login
+https://www.thymeleaf.org/doc/articles/springmvcaccessdata.html
+https://spring.io/guides/gs/handling-form-submission/

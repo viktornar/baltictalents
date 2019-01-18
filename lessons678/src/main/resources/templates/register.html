@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+</head>
+<body>
+    <div style="display: flex; flex-direction: row; justify-content: center">
+        <form id="user" action="#" th:action="@{/register}" th:object="${user}" method="post">
+            <p>
+                <label for="username" th:text="#{user.register.username}">Username:</label>
+                <input type="text" id="username" name="username" th:field="*{username}"/>
+                <p th:if="${#fields.hasErrors('*')}">Validation errors</p>
+            </p>
+    
+            <p>
+                <label for="decryptedPassword">Password:</label>
+                <input type="password" name="decryptedPassword" id="decryptedPassword" th:field="*{decryptedPassword}"/>
+                <span
+                   th:each="error: ${#fields.errors('decryptedPassword')}"
+                   th:text="${error}"
+                >
+                   Validation error
+                </span>
+            </p>
+            
+            <p>
+                <label for="passwordConfirm">Confirm password</label>
+                <input type="password" name="passwordConfirm" id="passwordConfirm" th:field="*{passwordConfirm}"/>
+                <span
+                   th:each="error: ${#fields.errors('passwordConfirm')}"
+                   th:text="${error}"
+                >
+                   Validation error
+                </span>
+            </p>
+    
+            <p>
+                <input type="submit" value="Submit" />
+                <input type="reset" value="Reset" />
+            </p>
+        </form>
+    </div>
+</body>
+</html>

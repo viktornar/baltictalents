@@ -21,7 +21,7 @@ public class Lessons910Application implements CommandLineRunner {
         // Run only once :)
         // val user = new User();
         // val role = new Role();
-        // role.setName(Role.RoleName.ADMIN);
+        // role.setName(Role.RoleName.USER);
         // val roles = new HashSet<Role>();
         // roles.add(role);
         // user.setRoles(roles);

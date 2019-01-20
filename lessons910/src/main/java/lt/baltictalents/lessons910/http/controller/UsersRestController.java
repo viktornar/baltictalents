@@ -20,7 +20,6 @@ public class UsersRestController {
     @GetMapping("/users")
     public List<User> getUsers() {
         val users = userRepository.findAll();
-        
         return users;
     }
 }

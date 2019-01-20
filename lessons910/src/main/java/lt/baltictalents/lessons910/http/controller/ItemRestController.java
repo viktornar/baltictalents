@@ -1,7 +1,6 @@
 package lt.baltictalents.lessons910.http.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +23,7 @@ public class ItemRestController {
     }
 
     @GetMapping("/items/{id}")
-    Optional<Item> getItemById(@PathVariable("id") Long id) {
-        return itemRepository.findById(id);
+    Item getItemById(@PathVariable("id") Long id) {
+        return itemRepository.findById(id).orElse(new Item());
     }
 }

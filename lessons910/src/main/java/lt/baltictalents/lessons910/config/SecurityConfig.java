@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/", "/register", "js", "css").permitAll()
+            .antMatchers("/", "/register", "js", "css", "images").permitAll()
             .antMatchers("/api/carts").hasAuthority("USER")
             .antMatchers("/api/items").hasAuthority("USER")
             .antMatchers("/api/users").hasAuthority("USER")

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+<body>
+    <div style="display: flex; flex-direction: column; align-items: center">
+            <p th:if="${loginError}" style="color:red">[[#{user.login.bad.username.or.password}]]</p>
+            <form th:action="@{/login}" action="#" method="post">
+                <p>
+                    <label for="username" >Username:</label>
+                    <input type="text" id="username" name="username" />
+                </p>
+
+                <p>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password"/>
+                </p>
+
+                <p>
+                    <input type="submit" value="Submit" />
+                    <input type="reset" value="Reset" />
+                </p>
+            </form>
+        </div>
+</body>
+</html>

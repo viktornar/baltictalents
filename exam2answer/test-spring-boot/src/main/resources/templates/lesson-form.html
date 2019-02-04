@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lesson</title>
+</head>
+<body>
+<h3 th:text="#{lesson.form}"></h3>
+<form th:action="@{/lesson/add}" th:object="${lesson}" method="post">
+    <div>
+        <select th:field="*{selectedStudentId}">
+            <option 
+                th:each="student: ${students}"
+                th:value="${student.id}"
+                th:text="${student.name + ' ' + student.surname}" >
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <select th:field="*{selectedTeacherId}">
+            <option 
+                th:each="teacher: ${teachers}"
+                th:value="${teacher.id}"
+                th:text="${teacher.name + ' ' + teacher.surname}" >
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <label for="course">Course:</label>
+        <select id="course" th:field="*{course}">
+            <option value="I">I</option>
+            <option value="II">II</option>
+            <option value="III">III</option>
+            <option value="IV">IV</option>
+        </select>
+    </div>
+    
+    <div>
+        <label for="type">Type:</label>
+        <select id="type" th:field="*{type}">
+            <option value="IT">IT</option>
+            <option value="Philosopy">Philosopy</option>
+            <option value="Physics">Physics</option>
+            <option value="English">English</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="description">Description:</label>
+        <input id="description" type="text" name="description" th:field="*{description}"/>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,7 @@
+.Products .Products__table {
+    border-collapse: collapse;
+}
+
+.Products .Products__table td {
+    border: 2px solid black 
+}

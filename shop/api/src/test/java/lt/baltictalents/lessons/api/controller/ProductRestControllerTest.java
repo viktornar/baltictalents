@@ -30,6 +30,8 @@ public class ProductRestControllerTest {
             .andExpect(
                 content().contentType("application/json;charset=UTF-8")
             )
-            .andExpect(jsonPath("$.length()").value(2));
+            .andExpect(jsonPath("$.length()").value(2))
+            .andExpect(jsonPath("$[0].images.length()").value(2))
+            .andExpect(jsonPath("$[1].images.length()").value(2));
     }
 }

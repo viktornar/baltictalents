@@ -1,0 +1,8 @@
+.Products {
+  color: red;
+  border-collapse: collapse;
+}
+
+.Products td {
+  border: 2px solid red;
+}

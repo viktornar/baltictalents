@@ -7,22 +7,34 @@ export default class Products extends React.Component {
   constructor(props) {
     super(props);
     this.state = { products: [] };
+    console.log('[Products] - init');
   }
-
+  
   componentDidMount() {
+    console.log('[Products] - component did mount');
+    
     axios('/api/products')
-      .then(({ data }) => {
-        this.setState({
-          ...this.state,
-          products: data,
-        });
-      })
-      .catch((error) => {
-        console.log(error.response);
+    .then(({ data }) => {
+      this.setState({
+        ...this.state,
+        products: data,
       });
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+  }
+  
+  componentWillUnmount() {
+    console.log('[Products] - component will unmount');
   }
 
+  componentDidUpdate() {
+    console.log('[Products] - component did update');
+  }
+  
   render() {
+    console.log('[Products] - component is rendering');
     const { products } = this.state;
 
     return (

@@ -5,20 +5,64 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.assertj.core.util.Lists;
+import static org.mockito.BDDMockito.given;
+
+import lombok.val;
+
+
+import lt.baltictalents.lessons.api.model.Image;
+import lt.baltictalents.lessons.api.model.Product;
+import lt.baltictalents.lessons.api.repository.ProductRepository;
 
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(ProductRestController.class)
 public class ProductRestControllerTest {
+
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private ProductRepository productRepository;
+
+    @Before
+    public void setup() {
+        val image1 = new Image();
+        val image2 = new Image();
+
+        image1.setId(1L);
+        image1.setName("image 1");
+        image1.setUrl("image 1 url");
+
+        image2.setId(2L);
+        image2.setName("image 2");
+        image2.setUrl("image 2 url");
+
+        given(productRepository.findAll()).willReturn(Lists.newArrayList(
+            new Product(
+                1L, "product 1", "product description 1", 2.53F,
+                new HashSet<Image>(Arrays.asList(image1, image2))
+            ),
+            new Product(
+                2L, "product 2", "product description 2", 100.34F,
+                new HashSet<Image>(Arrays.asList(image1, image2))
+            )
+        ));
+    }
+
 
     @Test
     public void testShowProductsResourceList() throws Exception {

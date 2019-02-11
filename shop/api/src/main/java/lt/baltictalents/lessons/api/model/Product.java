@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,7 +31,6 @@ public class Product extends BaseEntity {
     @Setter
     @OneToMany(
         cascade=CascadeType.ALL,
-        orphanRemoval=true,
         fetch=FetchType.LAZY
     )
     @JoinColumn(name="product_id")

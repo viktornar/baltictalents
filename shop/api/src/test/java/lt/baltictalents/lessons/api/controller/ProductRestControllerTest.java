@@ -1,12 +1,15 @@
 package lt.baltictalents.lessons.api.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Arrays;
 import java.util.HashSet;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,12 +34,14 @@ import lt.baltictalents.lessons.api.repository.ProductRepository;
 @RunWith(SpringRunner.class)
 @WebMvcTest(ProductRestController.class)
 public class ProductRestControllerTest {
-
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
     private ProductRepository productRepository;
+
+    @Autowired 
+    private ObjectMapper mapper;
 
     @Before
     public void setup() {
@@ -51,6 +56,16 @@ public class ProductRestControllerTest {
         image2.setName("image 2");
         image2.setUrl("image 2 url");
 
+        val image = new Image();
+        image.setName("image to save");
+        image.setUrl("image url");
+
+        val product = new Product();
+        product.setName("product to save");
+        product.setDescription("product to save description");
+        product.setPrice(3.54F);
+        product.setImages(new HashSet<Image>(Arrays.asList(image)));
+
         given(productRepository.findAll()).willReturn(Lists.newArrayList(
             new Product(
                 1L, "product 1", "product description 1", 2.53F,
@@ -61,6 +76,8 @@ public class ProductRestControllerTest {
                 new HashSet<Image>(Arrays.asList(image1, image2))
             )
         ));
+
+        given(productRepository.save(product)).willReturn(product);
     }
 
 
@@ -77,5 +94,28 @@ public class ProductRestControllerTest {
             .andExpect(jsonPath("$.length()").value(2))
             .andExpect(jsonPath("$[0].images.length()").value(2))
             .andExpect(jsonPath("$[1].images.length()").value(2));
+    }
+
+    @Test
+    public void testPostProductsResourceList() throws Exception {
+        val image = new Image();
+        image.setName("image to save");
+        image.setUrl("image url");
+
+        val product = new Product();
+        product.setName("product to save");
+        product.setDescription("product to save description");
+        product.setPrice(3.54F);
+        product.setImages(new HashSet<Image>(Arrays.asList(image)));
+
+        String json = mapper.writeValueAsString(product);
+
+        mockMvc.perform(
+                post("/api/products/new")
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(json)
+            )
+            .andExpect(status().isOk());
     }
 }

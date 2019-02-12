@@ -12,20 +12,20 @@ import './Products.scss';
 class Products extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = { products: [], isMobile: this.mediaQuery(), items: [] };
     this.resizeHandler = null;
   }
-  
+
   componentDidMount() {
     this.addResizeHandler();
     this.fetchProducts();
   }
-  
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.resizeHandler);
   }
-  
+
   mediaQuery() {
     if (matchMedia('(max-width: 960px)').matches) {
       return true;
@@ -56,21 +56,21 @@ class Products extends React.Component {
   }
 
   handleItemAdd = (product) => () => {
-    this.setState({ 
+    this.setState({
       items:[
-        ...this.state.items, 
-        { 
-          name: product.name, 
+        ...this.state.items,
+        {
+          name: product.name,
           price: product.price,
-          description: product.description, 
-          productId: product.id,  
+          description: product.description,
+          productId: product.id,
         }
-      ] 
+      ]
     });
   }
 
   handleItemsRemove = () => {
-    this.setState({ 
+    this.setState({
       items:[],
     });
   }
@@ -87,7 +87,7 @@ class Products extends React.Component {
 
   render() {
     const { products, isMobile, items } = this.state;
-    const isAdmin = true;
+    const { isAdmin } = this.props;
 
     return (
       <div className='Products'>
@@ -100,8 +100,8 @@ class Products extends React.Component {
                   {
                     products.map((product, productIdx) => {
                       return (
-                          <Product 
-                            key={ productIdx } 
+                          <Product
+                            key={ productIdx }
                             product={ product }
                             onDelete={ this.handleProductDelete }
                           />
@@ -115,9 +115,9 @@ class Products extends React.Component {
             <Container>
               <Card.Group itemsPerRow={ isMobile || products.length <= 1 ? 1 : 3 }>
                 <React.Fragment>
-                  { 
+                  {
                     items.length > 0 && (
-                      <ItemsCart 
+                      <ItemsCart
                         itemsCount={ items.length }
                         onPurchase={ this.handleItemsPurchase }
                         onClear={ this.handleItemsRemove }
@@ -127,8 +127,8 @@ class Products extends React.Component {
                   {
                     products.map((product, productIdx) => {
                       return (
-                        <Item 
-                          key={ productIdx } 
+                        <Item
+                          key={ productIdx }
                           product={ product }
                           onItemAdd={ this.handleItemAdd }
                         />
@@ -140,7 +140,7 @@ class Products extends React.Component {
             </Container>
           )
         }
-        
+
       </div>
     );
   }

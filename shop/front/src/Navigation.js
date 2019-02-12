@@ -15,15 +15,12 @@ function Navigation({ history }) {
               onClick={ () => { history.push('/'); } }
             />
           </Menu.Item>
-
-          <Menu.Menu position="right">
-            <Menu.Item 
-              as="a" name="products"
-              onClick={ () => { history.push('/products'); } }
-            >
-              Products
-            </Menu.Item>
-          </Menu.Menu>
+          <Menu.Item 
+            as="a" name="products"
+            onClick={ () => { history.push('/products'); } }
+          >
+            Products
+          </Menu.Item>
         </Container>
       </Menu>
     </div>

@@ -12,17 +12,12 @@ class Item extends React.Component {
     slidesToScroll: 1,
   }
 
-  handleProductDelete = (productId) => () => { 
-    const { onDelete } = this.props;
-    onDelete(productId);
-  };
-
   render() {
     const { product, onItemAdd } = this.props;
 
     return (
       <Card>
-        <Card.Content 
+        <Card.Content
           style={ {
             padding: '40px',
           } }>

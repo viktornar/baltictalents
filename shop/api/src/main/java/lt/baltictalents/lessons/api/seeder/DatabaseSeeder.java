@@ -2,6 +2,7 @@ package lt.baltictalents.lessons.api.seeder;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;

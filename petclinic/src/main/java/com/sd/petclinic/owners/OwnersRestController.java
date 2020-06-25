@@ -2,9 +2,12 @@ package com.sd.petclinic.owners;
 
 import com.sd.petclinic.model.Person;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class OwnersRestController {
     @Autowired
-    MockedOwnersRepository mockedOwnersRepository;
-
-    @Autowired
     OwnersRepository ownersRepository;
 
     @GetMapping("/owners")
@@ -30,8 +30,10 @@ public class OwnersRestController {
     }
 
     @GetMapping("/owners/{id}")
-    List<Person> getOwner(@PathVariable Long id) {
-        return mockedOwnersRepository.getOwnerById(id);
+    List<Owner> getOwner(@PathVariable Long id) throws OwnerNotFoundException {
+        Owner owner = ownersRepository.findById(id)
+                .orElseThrow(() -> new OwnerNotFoundException(String.format("Owner with id %s not found", id)));
+        return Arrays.asList(owner);
     }
 
     @PostMapping("/owners")
@@ -40,8 +42,15 @@ public class OwnersRestController {
     }
 
     @PutMapping("/owners/{id}")
-    List<Person> putOwner(@RequestBody Person person, @PathVariable Long id) {
-        return mockedOwnersRepository.updateOwner(person, id);
+    List<Owner> putOwner(@RequestBody Owner owner, @PathVariable Long id)
+            throws IllegalAccessException, InvocationTargetException, OwnerNotFoundException {
+        Owner ownerForUpdate = ownersRepository.findById(id)
+                .orElseThrow(() -> new OwnerNotFoundException(String.format("Owner with id %s not found", id)));
+        owner.setId(id);
+        BeanUtils.copyProperties(ownerForUpdate, owner);
+        ownersRepository.save(ownerForUpdate);
+
+        return Arrays.asList(ownerForUpdate);
     }
 
     @DeleteMapping("/owners/{id}")

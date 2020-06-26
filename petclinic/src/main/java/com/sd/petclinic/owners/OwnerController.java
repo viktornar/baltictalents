@@ -3,9 +3,13 @@ package com.sd.petclinic.owners;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class OwnerController {
@@ -21,9 +25,19 @@ public class OwnerController {
     }
 
     @GetMapping("/owners/new")
-    String createOwner(Map<String, Object> model) {
+    String createOwnerShow(Map<String, Object> model) {
         Owner owner = new Owner();
         model.put("owner", owner);
         return "owners/createOrUpdate";
+    }
+    
+    @PostMapping("/owners/new")
+    String createOwnerUpdate(@Valid Owner owner, BindingResult result) {
+        if (result.hasErrors()) {
+            return "owners/createOrUpdate";
+        } else {
+            ownersRepository.save(owner);
+            return "redirect:/owners";
+        }
     }
 }

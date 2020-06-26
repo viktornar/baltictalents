@@ -1,24 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-  <style>
-    .form-group > input {
-      margin-bottom: 10px;
-    }
-
-    .form-group > button {
-      margin-top: 10px;
-    }
-  </style>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body})}">
 
 <body>
 
   <h2>Create owner</h2>
 
-  <form th:object="${owner}" method="post">
-    <div class="form-`group">
+  <form th:object="${owner}" class="form-horizontal" method="post">
+    <div class="form-group">
       <input th:replace="~{fragments/inputField :: input ('First Name', 'firstName', 'text')}" />
       <input th:replace="~{fragments/inputField :: input ('Last Name', 'lastName', 'text')}" />
       <input th:replace="~{fragments/inputField :: input ('Address', 'address', 'text')}" />
@@ -26,7 +14,8 @@
       <input th:replace="~{fragments/inputField :: input ('Telephone', 'telephone', 'text')}" />
     </div>
     <div class="form-group">
-      <button 
+      <button
+        class="btn-default" 
         th:with="text=${owner['new']} ? 'Add Owner' : 'Update Owner'" 
         type="submit" th:text="${text}">
         Add Owner

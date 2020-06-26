@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class OwnerController {
+public class OwnersController {
     @Autowired
     OwnersRepository ownersRepository;
 

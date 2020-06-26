@@ -5,6 +5,7 @@ import com.sd.petclinic.model.Person;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -38,6 +39,10 @@ public class OwnersRestController {
 
     @PostMapping("/owners")
     List<Owner> postOwner(@RequestBody Owner owner) {
+        Owner newOwner = ownersRepository.save(owner);
+        if (newOwner.getPets() == null) {
+            newOwner.setPets(new HashSet<>());
+        }
         return Arrays.asList(ownersRepository.save(owner));
     }
 

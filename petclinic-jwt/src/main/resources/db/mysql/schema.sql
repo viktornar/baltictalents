@@ -33,3 +33,27 @@ CREATE TABLE IF NOT EXISTS visits (
   description VARCHAR(255),
   FOREIGN KEY (pet_id) REFERENCES pets(id)
 ) engine=InnoDB;
+
+create table if not exists users
+(
+  id bigint not null auto_increment primary key,
+  username varchar(255) null,
+  password varchar(255) null
+);
+
+create table if not exists roles
+(
+  id bigint not null auto_increment primary key,
+  name enum ('ADMIN', 'EDITOR', 'USER', 'ANONYMOUS') not null
+);
+
+create table if not exists user_role
+(
+  user_id bigint not null,
+  role_id bigint not null,
+  primary key (user_id, role_id),
+  constraint FK_user_role_users
+    foreign key (user_id) references users (id),
+  constraint FK_user_role_roles
+    foreign key (role_id) references roles (id)
+);

@@ -27,3 +27,14 @@ INSERT IGNORE INTO visits VALUES (1, 7, '2010-03-04', 'rabies shot');
 INSERT IGNORE INTO visits VALUES (2, 8, '2011-03-04', 'rabies shot');
 INSERT IGNORE INTO visits VALUES (3, 8, '2009-06-04', 'neutered');
 INSERT IGNORE INTO visits VALUES (4, 7, '2008-09-04', 'spayed');
+
+-- password - petclinic
+INSERT IGNORE INTO users VALUES (1, 'petclinic', '$2a$10$mWmWbwt6mDRikhJbPKmQDewJ8Of2BtdBd6xzvdGN8yKo06gFGb/p2');
+-- password - user
+INSERT IGNORE INTO users VALUES (2, 'user', '$2a$10$UDW6q2eTpOdLG24crN/FgOdzxB03CM/fT0T84IU6f8elbZqxSXc2i');
+
+INSERT IGNORE INTO roles VALUES (1, 'ADMIN');
+INSERT IGNORE INTO roles VALUES (2, 'USER');
+
+INSERT IGNORE INTO user_role VALUES(1, 1);
+INSERT IGNORE INTO user_role VALUES(2, 2);

@@ -18,9 +18,9 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private authenticationService: AuthenticationService) {
+              private route: ActivatedRoute,
+              private router: Router,
+              private authenticationService: AuthenticationService) {
     // Redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     });
 
     // Get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
 
   get f() { return this.loginForm.controls; }

@@ -1,1 +1,16 @@
-<p>dashboard works!</p>
+<div id="app-dashboard" class="flex container mx-auto items-center justify-center bg shadow-md rounded">
+    <table class="table-auto m-8">
+        <thead>
+            <tr>
+                <th class="px-4 py-2">First name</th>
+                <th class="px-4 py-2">Last name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let owner of owners">
+                <td class="border px-4 py-2">{{owner.firstName}}</td>
+                <td class="border px-4 py-2">{{owner.lastName}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

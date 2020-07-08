@@ -4,10 +4,17 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PathResolveService } from './not-found/path-resolve.service';
+import { AuthenticationGuard } from './auth/authentication.guard';
+import { Role } from './auth/role';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', component: DashboardComponent },
+  {
+    path: '',
+    component: DashboardComponent,
+    canActivate: [AuthenticationGuard],
+    data: { roles: [Role.Admin, Role.Editor] }
+  },
   {
     path: '**',
     resolve: {

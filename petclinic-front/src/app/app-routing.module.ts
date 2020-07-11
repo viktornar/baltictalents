@@ -10,11 +10,12 @@ import { Role } from './auth/role';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
-    path: '',
+    path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthenticationGuard],
     data: { roles: [Role.Admin, Role.Editor] }
   },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
     path: '**',
     resolve: {

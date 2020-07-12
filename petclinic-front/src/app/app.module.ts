@@ -11,6 +11,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './auth/jwt.interceptor';
 import { ErrorInterceptor } from './auth/error.interceptor';
 import { NavigationComponent } from './shared/navigation/navigation.component';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NavigationComponent } from './shared/navigation/navigation.component';
     LoginComponent,
     DashboardComponent,
     NotFoundComponent,
-    NavigationComponent
+    NavigationComponent,
+    NotAuthorizedComponent
   ],
   imports: [
     BrowserModule,

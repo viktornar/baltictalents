@@ -1,6 +1,7 @@
 package com.sd.petclinic.auth;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,11 +13,13 @@ public class JwtResponse implements Serializable {
     private final String username;
     private final Set<String> roles;
 
-    public JwtResponse(String jwttoken, String username, Set<GrantedAuthority> authorities) {
+    public JwtResponse(String jwttoken, String username, Collection<? extends GrantedAuthority> grantedAuthority) {
         this.jwttoken = jwttoken;
         this.username = username;
-
-        this.roles = authorities.stream().map(a -> {
+        
+        // Transforms  Collection<? extends GrantedAuthority> into
+        // Set<String> with stream and map.
+        this.roles = grantedAuthority.stream().map(a -> {
             return a.getAuthority();
         }).collect(Collectors.toSet());
     }

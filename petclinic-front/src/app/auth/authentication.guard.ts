@@ -18,8 +18,10 @@ export class AuthenticationGuard implements CanActivate {
 
     const currentUser = this.authenticationService.currentUserValue;
     if (currentUser) {
-      if (route.data.roles && route.data.roles.some(role => currentUser.roles && currentUser.roles.includes(role))) {
-        this.router.navigate(['/']);
+      if (
+        route.data.roles && !route.data.roles.some(role => currentUser.roles && currentUser.roles.includes(role))
+      ) {
+        this.router.navigate(['/not-authorized']);
         return false;
       }
 

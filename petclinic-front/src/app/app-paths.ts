@@ -5,4 +5,5 @@ export interface PathSet {
 export const paths: PathSet = {
   home: '',
   login: 'login',
+  dashboard: 'dashboard',
 };

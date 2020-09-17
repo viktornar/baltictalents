@@ -1,0 +1,20 @@
+.form-horizontal button.btn-inverse {
+  margin-left: 32px;
+}
+
+.xd-container {
+  margin-top: 40px;
+  margin-bottom: 100px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.btn-default {
+  margin-top: 20px;
+  border-width: 2px;
+  transition: border 0.15s;
+  -webkit-transition: border 0.15s;
+  -moz-transition: border 0.15s;
+  -o-transition: border 0.15s;
+  -ms-transition: border 0.15s;
+}

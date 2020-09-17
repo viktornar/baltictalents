@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html th:fragment="layout (template)">
+
+<head>
+    <style>
+        * {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <th:block th:include="${template}" />
+</body>
+
+</html>

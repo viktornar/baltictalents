@@ -16,4 +16,6 @@ public interface OwnersRepository extends CrudRepository<Owner, Long> {
     @Query("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.id =:id")
     @Transactional(readOnly = true)
     Optional<Owner> findByIdWithPets(@Param("id") Long id);
+
+    Optional<Owner> findByFirstName(String name);
 }

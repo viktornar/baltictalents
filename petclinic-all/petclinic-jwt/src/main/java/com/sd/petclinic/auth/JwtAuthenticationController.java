@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class JwtAuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;

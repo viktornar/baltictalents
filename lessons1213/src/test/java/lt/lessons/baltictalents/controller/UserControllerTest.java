@@ -85,3 +85,11 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.users[0].name").value("username"));
     }
 }
+
+GET /api/users
+
+[
+    {
+        username: username
+    }
+]

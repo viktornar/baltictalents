@@ -1,10 +1,13 @@
 package lt.baltictalents.lesson4.payload;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class SomeJson {
-    @Getter
-    @Setter
     public String response;
+
+    public String getResponse() {
+        return this.response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
+    }
 }

@@ -15,7 +15,7 @@ import java.util.Optional;
 public class MyModelAndViewController {
     @RequestMapping(value={"", "/"})
     ModelAndView doGetModelAndView() {
-        val modelAndView = new ModelAndView("model-and-view");
+        ModelAndView modelAndView = new ModelAndView("model-and-view");
 
         modelAndView.addObject("id", 1);
 
@@ -24,7 +24,7 @@ public class MyModelAndViewController {
 
     @RequestMapping(path = "/{id}")
     ModelAndView doGetModelAndView(@PathVariable("id") Optional<Integer> id) {
-        val modelAndView = new ModelAndView("model-and-view");
+        ModelAndView modelAndView = new ModelAndView("model-and-view");
 
         if (id.isPresent()) {
             modelAndView.addObject("id", id.get());

@@ -1,9 +1,6 @@
 package com.sd.petclinic.owners;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,13 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sd.petclinic.model.Person;
 import com.sd.petclinic.pets.Pet;
-
-// import org.springframework.beans.support.MutableSortDefinition;
-// import org.springframework.beans.support.PropertyComparator;
 
 @Entity
 @Table(name = "owners")

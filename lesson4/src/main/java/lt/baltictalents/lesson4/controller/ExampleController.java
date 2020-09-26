@@ -31,7 +31,7 @@ public class ExampleController {
 
     @RequestMapping("/query")
     ModelAndView doGetWithQuery(@RequestParam(value = "name1", required = false) String name1, @RequestParam(value="name2", required = false) String name2) {
-        val modelAndView = new ModelAndView("examples");
+        ModelAndView modelAndView = new ModelAndView("examples");
         modelAndView.addObject("name1", name1);
         modelAndView.addObject("name2", name2);
 
@@ -45,7 +45,7 @@ public class ExampleController {
 
     @RequestMapping(path = "/{id}")
     ModelAndView doGetModelAndViewWithId(@PathVariable("id") Optional<Integer> id) {
-        val modelAndView = new ModelAndView("examples");
+        ModelAndView modelAndView = new ModelAndView("examples");
 
         if (id.isPresent()) {
             modelAndView.addObject("id", id.get());
@@ -61,10 +61,10 @@ public class ExampleController {
 
         logger.info("Request method: " + request.getMethod());
 
-        val someJson = new SomeJson();
+        SomeJson someJson = new SomeJson();
         someJson.setResponse("success");
 
-        val responseHeaders = new HttpHeaders();
+        HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("MyResponseHeader", "MyValue");
 
         return new ResponseEntity<>(someJson, responseHeaders, HttpStatus.CREATED);
@@ -73,7 +73,7 @@ public class ExampleController {
     @RequestMapping(path = "/json", produces = "application/json")
     @ResponseBody
     SomeJson doGetJson() {
-        val someJson = new SomeJson();
+        SomeJson someJson = new SomeJson();
         someJson.setResponse("success other");
 
         return someJson;
@@ -83,7 +83,7 @@ public class ExampleController {
     @RequestMapping(value = "/json", produces = "application/json", consumes = "application/json", method = RequestMethod.POST)
     @ResponseBody
     SomeJson doPostJson(@RequestBody SomeJson someJson) {
-        val someResponseJson = new SomeJson();
+        SomeJson someResponseJson = new SomeJson();
         someResponseJson.setResponse(someJson.getResponse());
 
         return someJson;

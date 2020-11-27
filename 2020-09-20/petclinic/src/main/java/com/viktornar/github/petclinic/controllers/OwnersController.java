@@ -1,4 +1,4 @@
-package com.sd.petclinic.owners;
+package com.viktornar.github.petclinic.controllers;
 
 import java.util.List;
 import java.util.Map;
